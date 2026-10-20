@@ -1,0 +1,20 @@
+[project]
+name = "rippit"
+version = "0.1.0"
+description = "Overwrite and delete all of your own Reddit comments and posts."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["praw>=7.7"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+rippit = "rippit.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["rippit"]
