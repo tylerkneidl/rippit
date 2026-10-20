@@ -86,6 +86,7 @@
           yield child.data;
         }
         after = page.data.after || "";
+        console.log(`rippit: reading your ${where} (${sort})... ${seen.size} found so far`);
       } while (after);
     }
   }
@@ -116,6 +117,7 @@
   if (!me || !me.name) return console.error("rippit: you don't seem to be logged in.");
   const modhash = me.modhash;
   console.log(`rippit: logged in as u/${me.name}${DRY_RUN ? " (DRY RUN, nothing will change)" : ""}`);
+  console.log("rippit: reading your history first; changes start once that's done.");
 
   if (!DRY_RUN) {
     const typed = prompt(`This will overwrite${DELETE ? " and DELETE" : ""} the matching comments/posts of u/${me.name}. ` +
