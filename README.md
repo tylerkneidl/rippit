@@ -7,8 +7,8 @@ last text they saw. rippit first edits each comment (and each text post) to
 random filler, then deletes it. Link, image and video posts have no body to
 edit, so they're just deleted.
 
-**This is irreversible.** both versions start as a dry run, and before it overwrites anything it saves the originals to a local
-`rippit-log-<time>.jsonl` file.
+**This is irreversible.** Both versions start as a dry run, and both save a
+local backup of the original text before they overwrite anything.
 
 ## Two ways to run it
 
