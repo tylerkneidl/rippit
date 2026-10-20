@@ -56,7 +56,7 @@ async function run(settings, reddit) {
 
 // Dry run touches nothing.
 let r = fakeReddit({ comments: mk("t1", 3), posts: mk("t3", 2) });
-let out = await run({}, r);
+let out = await run({ DRY_RUN: true }, r);
 assert.deepEqual(r.calls, { edits: [], dels: [] });
 assert.match(out.logs.at(-1), /5 found.*0 deleted/);
 

@@ -5,14 +5,14 @@
 //
 // 1. Log in at https://old.reddit.com and stay on any old.reddit.com page.
 // 2. Open the browser console (F12, or Cmd+Option+J on a Mac).
-// 3. Paste this whole file and press Enter. It starts as a DRY RUN.
-// 4. Check the list it prints, set DRY_RUN to false below, paste again.
+// 3. Paste this whole file and press Enter. It asks you to type your username,
+//    then overwrites and deletes. Set DRY_RUN to true below to preview instead.
 //
 // Before changing anything it downloads a JSON backup of the original text.
 
 (async () => {
   // ---- settings --------------------------------------------------------
-  const DRY_RUN = true;          // false = actually overwrite and delete
+  const DRY_RUN = false;         // true = only list what would change
   const DO_COMMENTS = true;
   const DO_POSTS = true;
   const DELETE = true;           // false = overwrite only, leave items up

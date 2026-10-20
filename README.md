@@ -7,8 +7,8 @@ last text they saw. rippit first edits each comment (and each text post) to
 random filler, then deletes it. Link, image and video posts have no body to
 edit, so they're just deleted.
 
-**This is irreversible.** Both versions start as a dry run, and both save a
-local backup of the original text before they overwrite anything.
+**This is irreversible.** The CLI is a dry run unless you pass `--execute`; the
+browser script asks you to type your username first. Both save a local backup of the original text before they overwrite anything.
 
 ## Two ways to run it
 
@@ -19,10 +19,9 @@ your logged-in session, the same way the site's own edit and delete buttons do.
 
 1. Log in at <https://old.reddit.com> (it must be **old**.reddit.com).
 2. Open the browser console (F12, or Cmd+Option+J on a Mac).
-3. Paste the whole of `browser/rippit.js` and press Enter. It starts as a dry
-   run and prints what it would change.
-4. Edit the settings at the top (set `DRY_RUN = false`, plus any filters),
-   paste it again, and type your username when asked.
+3. Paste the whole of `browser/rippit.js` and press Enter, then type your
+   username when asked. It overwrites and deletes everything that matches the
+   settings at the top. Set `DRY_RUN = true` there to only list what would change.
 
 It downloads a JSON backup of the originals before it changes anything. Keep
 the tab open and in front until it prints `rippit: done`.
