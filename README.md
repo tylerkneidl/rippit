@@ -7,15 +7,35 @@ last text they saw. rippit first edits each comment (and each text post) to
 random filler, then deletes it. Link, image and video posts have no body to
 edit, so they're just deleted.
 
-**This is irreversible.** rippit runs as a dry run unless you pass `--execute`,
-and before it overwrites anything it saves the originals to a local
+**This is irreversible.** both versions start as a dry run, and before it overwrites anything it saves the originals to a local
 `rippit-log-<time>.jsonl` file.
 
-## Setup
+## Two ways to run it
 
-1. Go to <https://www.reddit.com/prefs/apps>, click **create another app**,
-   choose **script**, and use `http://localhost:8080` as the redirect URI.
-   The client id is the short string under the app name; the secret is labeled.
+**Browser script (no API key).** Reddit stopped handing out API keys on request
+in November 2025 ([Responsible Builder Policy](https://support.reddithelp.com/hc/en-us/articles/42728983564564-Responsible-Builder-Policy)),
+so the simplest option is [`browser/rippit.js`](browser/rippit.js). It uses
+your logged-in session, the same way the site's own edit and delete buttons do.
+
+1. Log in at <https://old.reddit.com> (it must be **old**.reddit.com).
+2. Open the browser console (F12, or Cmd+Option+J on a Mac).
+3. Paste the whole of `browser/rippit.js` and press Enter. It starts as a dry
+   run and prints what it would change.
+4. Edit the settings at the top (set `DRY_RUN = false`, plus any filters),
+   paste it again, and type your username when asked.
+
+It downloads a JSON backup of the originals before it changes anything. Keep
+the tab open and in front until it prints `rippit: done`.
+
+**Python CLI (needs API credentials).** Use this if you already have a Reddit
+"script" app from before November 2025, or once Reddit approves an access
+request you send through
+[Developer Support](https://support.reddithelp.com/hc/en-us/requests/new?ticket_form_id=14868593862164).
+
+## CLI setup
+
+1. Get a script app's client id and secret (see above). For the redirect URI
+   use `http://localhost:8080`.
 2. Install:
 
    ```sh
@@ -31,7 +51,7 @@ and before it overwrites anything it saves the originals to a local
    If your account uses 2FA, set `REDDIT_PASSWORD` to `password:123456` with
    the current code, right before running.
 
-## Usage
+## CLI usage
 
 ```sh
 rippit                       # dry run: lists what would be overwritten and deleted
@@ -70,4 +90,5 @@ Run `rippit --help` for the full list.
 ```sh
 pip install -e '.[dev]'
 pytest
+node browser/test.mjs   # browser script against a fake Reddit
 ```
